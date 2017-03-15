@@ -36,7 +36,10 @@ func letsencrypt(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	var letsencryptSecret = string(loadFile("letsencrypt.secret"))
+	letsencryptSecret = string(loadFile(getRelativePath() + "/letsencrypt.secret"))
+	letsencryptSecret = strings.Replace(letsencryptSecret, "\n", "", -1)
+	letsencryptSecret = strings.TrimSpace(letsencryptSecret)
+
 	var challenge = strings.Split(letsencryptSecret, ".")[0]
 	http.HandleFunc(".well-known/acme-challenge/"+challenge, letsencrypt)
 
