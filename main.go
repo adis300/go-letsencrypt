@@ -12,7 +12,8 @@ import (
 var relativePath = ""
 var letsencryptSecret = ""
 
-const PORT = ":8080"
+// PORT implementation
+const PORT = ":80"
 
 func getRelativePath() string {
 	if relativePath == "" {
