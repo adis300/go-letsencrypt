@@ -42,7 +42,7 @@ func main() {
 	letsencryptSecret = strings.TrimSpace(letsencryptSecret)
 
 	var challenge = strings.Split(letsencryptSecret, ".")[0]
-	http.HandleFunc(".well-known/acme-challenge/"+challenge, letsencrypt)
+	http.HandleFunc("/.well-known/acme-challenge/"+challenge, letsencrypt)
 
 	log.Println("Starting Letsencrypt server on " + PORT)
 	if err := http.ListenAndServe(PORT, nil); err != nil {
